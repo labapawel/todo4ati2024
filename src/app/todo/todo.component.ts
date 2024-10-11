@@ -10,10 +10,15 @@ import { Todo } from '../todo';
   styleUrl: './todo.component.scss'
 })
 export class TodoComponent {
-  
+  public naDzis : Todo[] = [];
+  public stare  : Todo[] = [];
+  public przysle: Todo[] = [];
+
   constructor (private serwis:TodoService) {
-    serwis.subscribe().subscribe((e:any)=>{
-      console.log(e);
+    serwis.subscribe().subscribe((e:Todo[])=>{
+        let now = new Date();
+        // this.naDzis = e.filter(x=>x.startDate >= now && x.startDate <= now )
+
     })
   }
 }

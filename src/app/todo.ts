@@ -4,5 +4,6 @@ export interface Todo {
     status: number,
     description: string;
     startDate?: Date,
-    endDate?: Date
+    endDate?: Date,
+    active: boolean
 }

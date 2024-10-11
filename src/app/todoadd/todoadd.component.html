@@ -13,14 +13,14 @@
     <div class="col-md-6 mt-3">
         <label for="todoPrority" class="form-label">Priorytet</label>
         <select type="text" [(ngModel)]="dane.prority" class="form-select" id="todoPrority">
-            <option *ngFor="let option of Prority" selected="" [value]="option.id">{{option.name}}</option>
+            <option *ngFor="let option of serwis.Prority" selected="" [value]="option.id">{{option.name}}</option>
         </select>
 
       </div>
     <div class="col-md-6 mt-3">
         <label for="todoStatus" class="form-label">Status</label>
         <select type="text" [(ngModel)]="dane.status" class="form-select" id="todoStatus">
-            <option *ngFor="let option of Status" selected="" [value]="option.id">{{option.name}}</option>
+            <option *ngFor="let option of serwis.Status" selected="" [value]="option.id">{{option.name}}</option>
         </select>
 
       </div>
@@ -33,6 +33,12 @@
         <label for="todoEndDate" class="form-label">Data zakończenia</label>
         <input type="date" class="form-control" [(ngModel)]="dane.endDate" id="todoEndDate">
       </div>
+     <div class="col-md-12">
+      <div class="form-check form-switch mt-3">
+        <input class="form-check-input" type="checkbox" [(ngModel)]="dane.active" role="switch" id="flexSwitchCheckDefault">
+        <label class="form-check-label" for="flexSwitchCheckDefault">Aktywność</label>
+      </div>
+     </div> 
     <div class="col-12 mt-3">
         <div class="justify-content-end d-flex">
             <button class="btn btn-primary" (click)="dodaj()">Dodaj</button>

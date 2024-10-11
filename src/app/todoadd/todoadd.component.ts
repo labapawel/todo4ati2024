@@ -4,6 +4,7 @@ import { NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Todo } from '../todo';
 import { TodoService } from '../todo.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-todoadd',
@@ -13,26 +14,17 @@ import { TodoService } from '../todo.service';
   styleUrl: './todoadd.component.scss'
 })
 export class TodoaddComponent {
-  public Prority: Array<ProrityStatus> = [
-    {id:1, name:"Standardowy"},
-    {id:100, name:"Pilny"},
-  ]
 
-  public Status: Array<ProrityStatus> = [
-    {id:0, name:"Do wykonania"},
-    {id:100, name:"W trakcie"},
-    {id:1000, name:"Wykonane"},
-  ]
-
-  public dane: Todo = {name: "",  prority:this.Prority[0].id, description:"", status:this.Status[0].id}; 
+  public dane: Todo = {name: "",  prority:1, description:"", endDate: new Date(), startDate: new Date(), status:0, active: true}; 
 
   public dodaj() : void {
     console.log("dodaje", this.dane);
     
     this.serwis.add(this.dane);
+    this.reuter.navigate(['/'])
   }
 
-  constructor (private serwis: TodoService){
+  constructor (public serwis: TodoService, private reuter : Router){
 
   }
 }
