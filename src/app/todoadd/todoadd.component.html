@@ -1,1 +1,41 @@
-<p>todoadd works!</p>
+<div class="row">
+
+    <div class="col-12 mt-3">
+        <label for="todoName" class="form-label">Nazwa</label>
+        <input type="text" class="form-control" [(ngModel)]="dane.name" id="todoName" placeholder="nazwa">
+      </div>
+
+    <div class="col-12 mt-3">
+        <label for="todoDescription" class="form-label">Opis</label>
+        <textarea class="form-control" [(ngModel)]="dane.description"  id="todoDescription" placeholder="opis"></textarea>
+      </div>
+
+    <div class="col-md-6 mt-3">
+        <label for="todoPrority" class="form-label">Priorytet</label>
+        <select type="text" [(ngModel)]="dane.prority" class="form-select" id="todoPrority">
+            <option *ngFor="let option of Prority" selected="" [value]="option.id">{{option.name}}</option>
+        </select>
+
+      </div>
+    <div class="col-md-6 mt-3">
+        <label for="todoStatus" class="form-label">Status</label>
+        <select type="text" [(ngModel)]="dane.status" class="form-select" id="todoStatus">
+            <option *ngFor="let option of Status" selected="" [value]="option.id">{{option.name}}</option>
+        </select>
+
+      </div>
+
+      <div class="col-md-6 mt-3">
+        <label for="todoStartDate" class="form-label">Data rozpoczęcia</label>
+        <input type="date" class="form-control" [(ngModel)]="dane.startDate" id="todoStartDate">
+      </div>
+      <div class="col-md-6 mt-3">
+        <label for="todoEndDate" class="form-label">Data zakończenia</label>
+        <input type="date" class="form-control" [(ngModel)]="dane.endDate" id="todoEndDate">
+      </div>
+    <div class="col-12 mt-3">
+        <div class="justify-content-end d-flex">
+            <button class="btn btn-primary" (click)="dodaj()">Dodaj</button>
+        </div>
+    </div>
+</div>
