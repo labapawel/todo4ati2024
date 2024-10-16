@@ -42,6 +42,7 @@ export class TodoService {
       dane = '[]';
     }
     this._listaTODO = JSON.parse(dane);
+    
   }
 
   public subscribe() {
