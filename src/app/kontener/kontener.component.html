@@ -1,4 +1,6 @@
-<div class="alert alert-primary" role="alert">
-    <h3>{{title}}</h3>
-    <div *ngFor="let item of dane">{{item.name}}</div>
-  </div>
+<div [ngClass]="{'hide':Hide, 'card':!Hide, 'mt-3':!Hide}">
+    <div class="card-body">
+      <h5 class="card-title">{{title}}</h5>
+      <app-todoitem *ngFor="let item of dane" [element]="item"></app-todoitem>
+    </div>
+</div>
