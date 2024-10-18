@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { TodoService } from '../todo.service';
 import { Todo } from '../todo';
+import { KontenerComponent } from '../kontener/kontener.component';
 
 @Component({
   selector: 'app-todo',
   standalone: true,
-  imports: [],
+  imports: [KontenerComponent],
   templateUrl: './todo.component.html',
   styleUrl: './todo.component.scss'
 })
@@ -20,7 +21,7 @@ export class TodoComponent {
         let now = new Date();
         console.log(e);
 
-        this.anulowane = e.filter(x=>x.active == false);
+        this.anulowane = e.filter(x=>!x.active);
         this.stare = e.filter(x=>(x.endDate!==undefined && new Date(x.endDate) < now ) &&
         !x.active && [0,100].indexOf(parseInt(x.status.toString())) >= 0 
         );
