@@ -8,6 +8,7 @@ import { ProrityStatus } from './prority';
   providedIn: 'root'
 })
 export class TodoService {
+  static lastID=0;
   private _listaTODO : Array<Todo> = [];
   private _connect : BehaviorSubject<Array<Todo>> = new BehaviorSubject<Array<Todo>>(this._listaTODO)
   public Prority: Array<ProrityStatus> = [
@@ -28,6 +29,7 @@ export class TodoService {
     
    }
   public add(dane: Todo){
+    dane.id = ++TodoService.lastID;
     this._listaTODO.push(dane);
     this.save();
     this._connect.next(this._listaTODO);
@@ -42,7 +44,11 @@ export class TodoService {
       dane = '[]';
     }
     this._listaTODO = JSON.parse(dane);
-    
+    this._listaTODO.forEach(e => {
+      e.prority = parseInt(e.prority.toString());
+      e.endDate = e.endDate?new Date(e.endDate):undefined;
+      e.startDate = e.startDate?new Date(e.startDate):undefined;
+    })
   }
 
   public subscribe() {
