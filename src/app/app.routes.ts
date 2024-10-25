@@ -4,5 +4,6 @@ import { TodoaddComponent } from './todoadd/todoadd.component';
 
 export const routes: Routes = [
     {path: "", component: TodoComponent},
-    {path: "add", component: TodoaddComponent}
+    {path: "add", component: TodoaddComponent},
+    {path: "add/:id", component: TodoaddComponent}
 ];

@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Todo } from '../todo';
 import { NgClass } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-todoitem',
@@ -12,6 +13,14 @@ import { NgClass } from '@angular/common';
 export class TodoitemComponent {
  @Input() element: Todo = {active: false, description:"", name:"", prority:0, status:0}
 
+ constructor (private router: Router){
+ }
+
+ public edit(id?:number): void{
+  console.log(id);
+  
+    this.router.navigate(['/add', id]);
+ }
 
  get pilne(): boolean{
   console.log([100].indexOf(this.element.prority), this.element.prority);

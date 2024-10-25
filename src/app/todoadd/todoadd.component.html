@@ -27,11 +27,11 @@
 
       <div class="col-md-6 mt-3">
         <label for="todoStartDate" class="form-label">Data rozpoczęcia</label>
-        <input type="date" class="form-control" [(ngModel)]="dane.startDate" id="todoStartDate">
+        <input type="date" class="form-control" [value]="startDate" (change)="startDateChange($event)" id="todoStartDate">
       </div>
       <div class="col-md-6 mt-3">
         <label for="todoEndDate" class="form-label">Data zakończenia</label>
-        <input type="date" class="form-control" [(ngModel)]="dane.endDate" id="todoEndDate">
+        <input type="date" class="form-control" [value]="endDate" (change)="endDateChange($event)" id="todoEndDate">
       </div>
      <div class="col-md-12">
       <div class="form-check form-switch mt-3">

@@ -34,6 +34,12 @@ export class TodoService {
     this.save();
     this._connect.next(this._listaTODO);
   }
+  update(dane: Todo){
+    let index = this._listaTODO.findIndex(e=>e.id == dane.id);
+    this._listaTODO[index] = dane;
+    this.save();
+    this._connect.next(this._listaTODO);
+  }
 
   save(){
     localStorage.setItem('todo4a', JSON.stringify(this._listaTODO));
@@ -49,6 +55,9 @@ export class TodoService {
       e.endDate = e.endDate?new Date(e.endDate):undefined;
       e.startDate = e.startDate?new Date(e.startDate):undefined;
     })
+    TodoService.lastID = Math.max(...this._listaTODO.map(e=>e.id));
+
+
   }
 
   public subscribe() {

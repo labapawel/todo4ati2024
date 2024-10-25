@@ -1,5 +1,5 @@
 export interface Todo {
-    id?: number,
+    id: number,
     name: string,
     prority: number,
     status: number,
