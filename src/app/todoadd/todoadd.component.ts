@@ -15,7 +15,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class TodoaddComponent {
 
-  public dane: Todo = {name: "",  prority:1, description:"", endDate: new Date(), startDate: new Date(), status:0, active: true}; 
+  public dane: Todo = {name: "", id:-1, prority:1, description:"", endDate: new Date(), startDate: new Date(), status:0, active: true}; 
   private daneTab : Todo[] = [];
   public dodaj() : void {
     console.log("dodaje", this.dane);

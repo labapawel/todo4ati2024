@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrl: './todoitem.component.scss'
 })
 export class TodoitemComponent {
- @Input() element: Todo = {active: false, description:"", name:"", prority:0, status:0}
+ @Input() element: Todo = {active: false, id:-1, description:"", name:"", prority:0, status:0}
 
  constructor (private router: Router){
  }
