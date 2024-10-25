@@ -2,7 +2,7 @@
     <div class="row">
         <div [ngClass]="{'col-11': true, 'text-danger': pilne}">{{element.name}}</div>
         <div class="col-1">
-            <img src="assets/SVG/bin.svg" class="small" alt="Kosz">
+            <img src="assets/SVG/bin.svg" class="small" (click)="remove(element.id)" alt="Kosz">
             <img src="assets/SVG/pen_1.svg" (click)="edit(element.id)" class="small" alt="Edycja">
         </div>
     </div>

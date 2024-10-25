@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Todo } from '../todo';
 import { NgClass } from '@angular/common';
 import { Router } from '@angular/router';
+import { TodoService } from '../todo.service';
 
 @Component({
   selector: 'app-todoitem',
@@ -13,14 +14,16 @@ import { Router } from '@angular/router';
 export class TodoitemComponent {
  @Input() element: Todo = {active: false, id:-1, description:"", name:"", prority:0, status:0}
 
- constructor (private router: Router){
+ constructor (private router: Router, private service : TodoService){
  }
 
  public edit(id?:number): void{
-  console.log(id);
-  
     this.router.navigate(['/add', id]);
  }
+
+public remove(id: number){
+  this.service.delete(id);
+}
 
  get pilne(): boolean{
   console.log([100].indexOf(this.element.prority), this.element.prority);

@@ -59,6 +59,11 @@ export class TodoService {
 
 
   }
+  public delete(id:number){
+    this._listaTODO = this._listaTODO.filter(e=>e.id != id);
+    this.save();
+    this._connect.next(this._listaTODO);
+  }
 
   public subscribe() {
     return this._connect.asObservable();
