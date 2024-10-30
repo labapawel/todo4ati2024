@@ -4,6 +4,10 @@
         <div class="col-1">
             <img src="assets/SVG/bin.svg" class="small" (click)="remove(element.id)" alt="Kosz">
             <img src="assets/SVG/pen_1.svg" (click)="edit(element.id)" class="small" alt="Edycja">
+            <img src="assets/SVG/arrow_down.svg" (click)="wyswietl=!wyswietl" class="small" alt="Edycja">
+        </div>
+        <div class="col-12" *ngIf="wyswietl">
+             detale
         </div>
     </div>
     

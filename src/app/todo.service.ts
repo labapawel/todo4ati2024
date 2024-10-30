@@ -65,6 +65,15 @@ export class TodoService {
     this._connect.next(this._listaTODO);
   }
 
+  public replace(data: Todo[]){
+    data.forEach(element=>{
+      this._listaTODO = this._listaTODO.filter(elemx=>elemx != element);
+    })
+    this._listaTODO = [...this._listaTODO, ...data];
+    this.save();
+    this._connect.next(this._listaTODO);
+  }
+
   public subscribe() {
     return this._connect.asObservable();
   }

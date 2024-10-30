@@ -18,7 +18,7 @@ export class TodoComponent {
 
   constructor (private serwis:TodoService) {
     serwis.subscribe().subscribe((e:Todo[])=>{
-        let now = new Date();
+        let now = new Date(new Date().toLocaleDateString().split('.').reverse().join('-'));
         console.log(e);
 
         this.anulowane = e.filter(x=>!x.active);

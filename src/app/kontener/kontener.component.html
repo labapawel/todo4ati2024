@@ -1,6 +1,6 @@
 <div [ngClass]="{'hide':Hide, 'card':!Hide, 'mt-3':!Hide}">
-    <div class="card-body">
+    <div class="card-body" cdkDropList (cdkDropListDropped)="drop($event)">
       <h5 class="card-title">{{title}}</h5>
-      <app-todoitem *ngFor="let item of dane" [element]="item"></app-todoitem>
+      <app-todoitem *ngFor="let item of dane" [element]="item" cdkDrag></app-todoitem>
     </div>
 </div>

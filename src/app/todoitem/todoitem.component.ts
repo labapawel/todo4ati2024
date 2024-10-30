@@ -1,19 +1,19 @@
 import { Component, Input } from '@angular/core';
 import { Todo } from '../todo';
-import { NgClass } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import { TodoService } from '../todo.service';
 
 @Component({
   selector: 'app-todoitem',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, NgIf],
   templateUrl: './todoitem.component.html',
   styleUrl: './todoitem.component.scss'
 })
 export class TodoitemComponent {
  @Input() element: Todo = {active: false, id:-1, description:"", name:"", prority:0, status:0}
-
+ public wyswietl = false;
  constructor (private router: Router, private service : TodoService){
  }
 
