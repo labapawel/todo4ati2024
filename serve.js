@@ -11,6 +11,7 @@ app.listen(5500, () => {
 
 let appPath = path.join(__dirname, "dist/todo/browser/")
 app.use(express.static(appPath));
+app.use(express.json());
 
 
 async function sqlcon(){
@@ -48,12 +49,26 @@ app.get('/api/data', async (req, res) => {
 })
 
 
+app.post("/api/delete", async (req, res)=>{
+    const {deleteid} = req.body;
+    console.log(deleteid);
+
+    if(deleteid && deleteid > 0){
+        let con = await sqlcon();
+        
+        await con.execute("delete from todo where id=?", [deleteid]);
+        res.json({status:true});
+    } else res.json({status:false});
+});
+
 app.post("/api/update", async (req, res)=>{
         const {id, name, prority, status, description, startDate,
                endDate, active} = req.body;
+           //    console.log(req.body);
+               
         const con = await sqlcon();
         if(!id || id < 0){
-           await con.execute("insert into todo (name,prority,status, description, startDate,endDate,active) values (?,?,?,?,?,?,?)"
+           await con.execute("insert into todo (name,prority,status, description, startDate,endDate,active) values (?,?,?,?,?,?,?)",
                 [name,prority,status, description, startDate,endDate,active]
             )
         } else

@@ -18,11 +18,11 @@ export class TodoaddComponent {
   public dane: Todo = {name: "", id:-1, prority:1, description:"", endDate: new Date(), startDate: new Date(), status:0, active: true}; 
   private daneTab : Todo[] = [];
   
-  public dodaj() : void {
+  public async dodaj() {
     if(this.dane.id >=0)
-      this.serwis.update(this.dane);    
+      await this.serwis.update(this.dane);    
     else
-      this.serwis.add(this.dane);
+    await  this.serwis.add(this.dane);
     this.reuter.navigate(['/'])
   }
 

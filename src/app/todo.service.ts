@@ -25,44 +25,73 @@ export class TodoService {
 
   constructor() {
     this.load();
-    this._connect.next(this._listaTODO);
+   
     
    }
-  public add(dane: Todo){
-    dane.id = ++TodoService.lastID;
-    this._listaTODO.push(dane);
-    this.save();
-    this._connect.next(this._listaTODO);
+  public async add(dane: Todo){
+    fetch("api/update", {
+      method:"post",
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body:JSON.stringify(dane)
+    })
+    .then(e=>e.json())
+    .then(status=>{
+      this.load();
+    })
+
+
   }
-  update(dane: Todo){
-    let index = this._listaTODO.findIndex(e=>e.id == dane.id);
-    this._listaTODO[index] = dane;
-    this.save();
-    this._connect.next(this._listaTODO);
+ public  async update(dane: Todo){
+
+
+    fetch("api/update", {
+      method:"post",
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body:JSON.stringify(dane)
+    })
+    .then(e=>e.json())
+    .then(status=>{
+      this.load();
+    })
+
   }
 
   save(){
     localStorage.setItem('todo4a', JSON.stringify(this._listaTODO));
   }
   load(){
-    let dane = localStorage.getItem('todo4a');
-    if(!dane){
-      dane = '[]';
-    }
-    this._listaTODO = JSON.parse(dane);
-    this._listaTODO.forEach(e => {
-      e.prority = parseInt(e.prority.toString());
-      e.endDate = e.endDate?new Date(e.endDate):undefined;
-      e.startDate = e.startDate?new Date(e.startDate):undefined;
-    })
-    TodoService.lastID = Math.max(...this._listaTODO.map(e=>e.id));
+    fetch('/api/data')
+      .then(e=>e.json())
+      .then(json=>{
+        this._listaTODO=json;
+        console.log(json);
+        this._listaTODO.forEach(e => {
+          e.prority = parseInt(e.prority.toString());
+          e.endDate = e.endDate?new Date(e.endDate):undefined;
+          e.startDate = e.startDate?new Date(e.startDate):undefined;
+        })
+        TodoService.lastID = Math.max(...this._listaTODO.map(e=>e.id));
+        this._connect.next(this._listaTODO);
+      })    
 
 
   }
   public delete(id:number){
-    this._listaTODO = this._listaTODO.filter(e=>e.id != id);
-    this.save();
-    this._connect.next(this._listaTODO);
+    fetch("api/delete", {
+      method:"post",
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body:JSON.stringify({'deleteid': id})
+    })
+    .then(e=>e.json())
+    .then(status=>{
+      this.load();
+    })    
   }
 
   public replace(data: Todo[]){

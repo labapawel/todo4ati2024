@@ -1,7 +1,7 @@
 CREATE TABLE Todo (
     id INT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    priority INT,
+    prority INT,
     status INT,
     description TEXT,
     startDate DATE,
